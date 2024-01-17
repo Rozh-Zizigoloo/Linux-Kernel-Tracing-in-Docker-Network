@@ -26,7 +26,7 @@ echo 0 > /sys/kernel/debug/tracing/tracing_on
 ```
 Finally, we save this trace in a file:
 ```
-cat trace > /***/ftrace_without_docker.log
+cat trace > /***/ftrace_without_docker.log :
 ```
 ![Picture1](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/22d6111f-0e66-433b-95aa-276d272d0fcd)
 
@@ -343,18 +343,20 @@ The checks between the two log files found **netif_rx **:
 > trace_simple.txt
 > trace_IPVLAN.txt
 
-![Picture6](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f9a02e87-44bb-47b9-aca5-5677e0bc35c4)
-
 and others functions:
 
--   net:napi_gro_frags_entry
-  net:napi_gro_receive_entry
-  net:net_dev_queue  
-  net:net_dev_start_xmit
-  net:net_dev_xmit                                   [Tracepoint eve
-  net:netif_receive_skb 
-  net:netif_receive_skb_entry  
-  net:netif_receive_skb_list_entry 
-  net:netif_rx  
-  net:netif_rx_entry   
-  net:netif_rx_ni_entry
+-  net:napi_gro_frags_entry
+-  net:napi_gro_receive_entry
+-  net:net_dev_queue  
+-  net:net_dev_start_xmit
+-  net:net_dev_xmit             
+-  net:netif_receive_skb 
+-  net:netif_receive_skb_entry  
+-  net:netif_receive_skb_list_entry 
+-  net:netif_rx_entry   
+-  net:netif_rx_ni_entry
+
+![Screenshot 2024-01-17 235632](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/05badeb1-b45d-402c-91a5-cd87a50299da)
+
+It is shown graphically in the ipvlan file.
+It has an overhead of **2.66**.
