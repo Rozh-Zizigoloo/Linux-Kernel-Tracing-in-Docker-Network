@@ -147,5 +147,136 @@ $nc -l 172.20.10.10.8002
 $nc -p 9000 172.20.10.10.8082
 ```
 > output file -> trace_with_bridge.txt
+
 ![Picture5](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/ee6b3953-d438-4e11-8ceb-ac18208ea4e3)
 
+The checks between the two log files found **bf_forward**:
+> File under review:
+> trace_simple.txt
+> trace_bridge.txt
+
+![Picture6](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f9a02e87-44bb-47b9-aca5-5677e0bc35c4)
+
+and others functions:
+
+- br_handle_frame
+- br_nf_pre_routing
+- br_nf_pre_routing_finish
+- br_nf_hook_thresh
+- br_handle_frame_finish
+- br_pass_frame_up
+- br_netif_receive_skb
+- netif_receive_skb
+## Bridge architecture 🏗️
+
+![Picture7](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/22dd8f95-7a37-4208-b4bb-cc71a9ec4000)
+
+**Analysis:**
+The implementation of the bridge in Linux is such that the connection connects to the internal kernel.
+```
+struct net_bridge
+{
+    spinlock_t          lock;
+    struct list_head    port_list;
+    struct net_device   *dev;
+
+    spinlock_t          hash_lock;
+    struct hlist_head   hash[BR_HASH_SIZE];
+    bridge_id           bridge_id;
+    ...
+}
+```
+port_list is the list of ports that a bridge has. Each bridge can have a maximum of BR_MAX_PORTS (1024) ports. dev is a pointer to the net_device structure that represents the bridge device. Hash table is sent with BR_HASH_SIZE(256) input.
+
+By following the instructions, we reach this function, which is the main story!
+
+```
+int br_add_if(struct net_bridge *br, struct net_device *dev) {
+    struct net_bridge_port *p;
+    ... (Validation)
+    p = new_nbp(br, dev);
+    ...
+    err = netdev_rx_handler_register(dev, **br_handle_frame**, p);
+    ...
+    err = netdev_master_upper_dev_link(dev, br->dev);
+    ...
+    list_add_rcu(&p->list, &br->port_list);
+    nbp_update_port_count(br);
+    ...
+    if (br_fdb_insert(br, p, dev->dev_addr, 0))
+        netdev_err(dev, "failed insert local address bridge forwarding table\n");
+    ...
+    return err;
+}
+```
+Perform a series of validations to ensure that this device can become a bridge slave. Some of the rules are:
+1) Non-Ethernet devices are not allowed.
+2) A device that is already slave is not allowed.
+3) The device itself cannot be a bridge.
+  4) IFF_DONT_BRIDGE should not exist on the device. Etc.
+Allocate and initialize a **net_bridge_port** structure. The port is added to the port_bridge list later.
+Register a **br_handle_frame** receive handler for the device. Frames sent to that device are handled by this function. We'll see what this controller does later.
+Make the device a slave, that is, make the bridge the master of this device.
+Add the Ethernet address of this device as a local entry to the forwarding table.
+
+The figure below from "Anatomy of a Linux bridge" shows the relationship of the functions we mentioned above.
+ 
+![Picture8](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/d95b5b1f-d2ac-469e-9e96-42fb50803560)
+
+Incoming data is first processed by netif_receive_skb, which is a device-independent public function. rx_handler calls the device on which the data is to be received. Here the br_handle_frame handler is called to process the received data on the device.
+
+br_handle_frame first checks to make sure the frame is a valid Ethernet frame. It then checks to see if the destination is a reserved address, which means it's a control frame. If the answer is positive, special processing is required. Otherwise, it calls br_handle_frame_finish to handle this frame.
+
+```
+
+rx_handler_result_t br_handle_frame(struct sk_buff **pskb) {
+    const unsigned char *dest = eth_hdr(skb)->h_dest;
+    ... (Validation code)
+    if (unlikely(is_link_local_ether_addr(dest))) {
+        /*
+         * See IEEE 802.1D Table 7-10 Reserved addresses
+         *
+         * Assignment               Value
+         * Bridge Group Address     01-80-C2-00-00-00
+         * (MAC Control) 802.3      01-80-C2-00-00-01
+         * (Link Aggregation) 802.3 01-80-C2-00-00-02
+         * 802.1X PAE address       01-80-C2-00-00-03
+         *
+         * 802.1AB LLDP         01-80-C2-00-00-0E
+         *
+         * Others reserved for future standardization
+         */
+        ... (Special processing for control frame)
+    }
+
+    ...
+    NF_HOOK(NFPROTO_BRIDGE, NF_BR_PRE_ROUTING, skb, skb->dev, NULL,
+            br_handle_frame_finish);
+    ...
+}
+
+```
+> br_handle_frame_finish does the following:
+> 
+> Get the MAC address of the source and update the forwarding database.
+
+**Analysis with Ftrace :**
+```
+echo 'br_*' >> set_ftrace_filter
+set_ftrace_filter
+```
+> output file -> bridge_ftrace.log
+
+To use the firefox tool to display the tracing file graphically;
+We create a flamegraph file:
+
+![Picture9](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/b246ca8a-fd57-49db-b36b-2e47fd8a2d46)
+
+![Picture10](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/2b0e5295-61bc-41cf-bcbc-02f1322e8941)
+
+
+![Picture11](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/cb066b66-6a41-452b-96a5-4dfc25b4cd21)
+
+
+It is shown graphically in the bridge.perf file.
+It has an overhead of **19.53** seconds.
