@@ -275,7 +275,7 @@ We create a flamegraph file:
 ![Picture10](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/2b0e5295-61bc-41cf-bcbc-02f1322e8941)
 
 
-![Picture11](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/cb066b66-6a41-452b-96a5-4dfc25b4cd21)
+![Picture11](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/2af891bf-2261-41d1-b8c4-3116cd0ffba2)
 
 
 It is shown graphically in the bridge.perf file.
