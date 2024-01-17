@@ -1,0 +1,1170 @@
+# tracer: function_graph
+#
+# CPU  DURATION                  FUNCTION CALLS
+# |     |   |                     |   |   |   |
+ 0)               |  br_handle_frame [bridge]() {
+ 0)               |    br_nf_pre_routing [br_netfilter]() {
+ 0)   0.274 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 0)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 0)               |        br_nf_hook_thresh [br_netfilter]() {
+ 0)               |          br_handle_frame_finish [bridge]() {
+ 0)   0.260 us    |            br_allowed_ingress [bridge]();
+ 0)   1.059 us    |            br_fdb_update [bridge]();
+ 0)   0.464 us    |            br_fdb_find_rcu [bridge]();
+ 0)               |            br_pass_frame_up [bridge]() {
+ 0)   0.295 us    |              br_allowed_egress [bridge]();
+ 0)   0.267 us    |              br_handle_vlan [bridge]();
+ 0)   0.254 us    |              br_multicast_count [bridge]();
+ 0)               |              br_netif_receive_skb [bridge]() {
+ 0)               |                netif_receive_skb() {
+ 0)               |                  br_dev_xmit [bridge]() {
+ 0)   0.352 us    |                    br_nf_dev_xmit [br_netfilter]();
+ 0)   0.238 us    |                    br_allowed_ingress [bridge]();
+ 0)   0.267 us    |                    br_fdb_find_rcu [bridge]();
+ 0)               |                    br_forward [bridge]() {
+ 0)   0.293 us    |                      br_allowed_egress [bridge]();
+ 0)   0.238 us    |                      br_handle_vlan [bridge]();
+ 0)               |                      br_forward_finish [bridge]() {
+ 0)   0.265 us    |                        br_nf_post_routing [br_netfilter]();
+ 0)               |                        br_dev_queue_push_xmit [bridge]() {
+ 0)   0.248 us    |                          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 0)   2.520 us    |                        }
+ 0)   3.953 us    |                      }
+ 0)   6.120 us    |                    }
+ 0)   8.545 us    |                  }
+ 0) + 37.580 us   |                }
+ 0) + 38.069 us   |              }
+ 0) + 40.668 us   |            }
+ 0) + 44.968 us   |          }
+ 0) + 45.710 us   |        }
+ 0) + 46.374 us   |      }
+ 0) + 65.097 us   |    }
+ 0) + 69.734 us   |  }
+ 0)               |  br_handle_frame [bridge]() {
+ 0)               |    br_nf_pre_routing [br_netfilter]() {
+ 0)   0.218 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 0)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 0)               |        br_nf_hook_thresh [br_netfilter]() {
+ 0)               |          br_handle_frame_finish [bridge]() {
+ 0)   0.209 us    |            br_allowed_ingress [bridge]();
+ 0)   0.307 us    |            br_fdb_update [bridge]();
+ 0)   0.276 us    |            br_fdb_find_rcu [bridge]();
+ 0)               |            br_pass_frame_up [bridge]() {
+ 0)   0.207 us    |              br_allowed_egress [bridge]();
+ 0)   0.227 us    |              br_handle_vlan [bridge]();
+ 0)   0.204 us    |              br_multicast_count [bridge]();
+ 0)               |              br_netif_receive_skb [bridge]() {
+ 0) + 18.792 us   |                netif_receive_skb();
+ 0) + 19.333 us   |              }
+ 0) + 21.119 us   |            }
+ 0) + 23.113 us   |          }
+ 0) + 23.630 us   |        }
+ 0) + 24.136 us   |      }
+ 0) + 26.485 us   |    }
+ 0) + 27.045 us   |  }
+ ------------------------------------------
+ 0)    nc-12831    =>    <idle>-0   
+ ------------------------------------------
+
+ 0)               |  br_dev_xmit [bridge]() {
+ 0)   0.560 us    |    br_nf_dev_xmit [br_netfilter]();
+ 0)   0.395 us    |    br_allowed_ingress [bridge]();
+ 0)   1.394 us    |    br_fdb_find_rcu [bridge]();
+ 0)               |    br_forward [bridge]() {
+ 0)   0.392 us    |      br_allowed_egress [bridge]();
+ 0)   0.395 us    |      br_handle_vlan [bridge]();
+ 0)               |      br_forward_finish [bridge]() {
+ 0)   0.392 us    |        br_nf_post_routing [br_netfilter]();
+ 0)               |        br_dev_queue_push_xmit [bridge]() {
+ 0)   0.391 us    |          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 0)   5.838 us    |        }
+ 0)   8.201 us    |      }
+ 0) + 12.708 us   |    }
+ 0) + 24.394 us   |  }
+ ------------------------------------------
+ 0)    <idle>-0    =>   ksoftir-13  
+ ------------------------------------------
+
+ 0)               |  br_handle_frame [bridge]() {
+ 0)   1.050 us    |    br_nf_pre_routing [br_netfilter]();
+ 0)               |    br_handle_frame_finish [bridge]() {
+ 0)   0.394 us    |      br_allowed_ingress [bridge]();
+ 0)   0.806 us    |      br_fdb_update [bridge]();
+ 0)   1.131 us    |      br_do_proxy_suppress_arp [bridge]();
+ 0)   0.678 us    |      br_fdb_find_rcu [bridge]();
+ 0)               |      br_pass_frame_up [bridge]() {
+ 0)   0.393 us    |        br_allowed_egress [bridge]();
+ 0)   0.395 us    |        br_handle_vlan [bridge]();
+ 0)   0.436 us    |        br_multicast_count [bridge]();
+ 0)               |        br_netif_receive_skb [bridge]() {
+ 0)               |          netif_receive_skb() {
+ 0)               |            br_dev_xmit [bridge]() {
+ 0)   0.393 us    |              br_nf_dev_xmit [br_netfilter]();
+ 0)   0.410 us    |              br_allowed_ingress [bridge]();
+ 0)   0.449 us    |              br_fdb_find_rcu [bridge]();
+ 0)               |              br_forward [bridge]() {
+ 0)   0.403 us    |                br_allowed_egress [bridge]();
+ 0)   0.395 us    |                br_handle_vlan [bridge]();
+ 0)               |                br_forward_finish [bridge]() {
+ 0)   0.413 us    |                  br_nf_post_routing [br_netfilter]();
+ 0)               |                  br_dev_queue_push_xmit [bridge]() {
+ 0)   0.403 us    |                    br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 0)   1.944 us    |                  }
+ 0)   3.559 us    |                }
+ 0)   5.992 us    |              }
+ 0)   9.517 us    |            }
+ 0) + 22.676 us   |          }
+ 0) + 23.467 us   |        }
+ 0) + 27.778 us   |      }
+ 0) + 34.029 us   |    }
+ 0) + 38.270 us   |  }
+ 0)               |  br_handle_frame [bridge]() {
+ 0)   0.442 us    |    br_nf_pre_routing [br_netfilter]();
+ 0)               |    br_handle_frame_finish [bridge]() {
+ 0)   0.396 us    |      br_allowed_ingress [bridge]();
+ 0)   0.483 us    |      br_fdb_update [bridge]();
+ 0)   0.408 us    |      br_do_proxy_suppress_arp [bridge]();
+ 0)   0.457 us    |      br_fdb_find_rcu [bridge]();
+ 0)               |      br_pass_frame_up [bridge]() {
+ 0)   0.403 us    |        br_allowed_egress [bridge]();
+ 0)   0.398 us    |        br_handle_vlan [bridge]();
+ 0)   0.390 us    |        br_multicast_count [bridge]();
+ 0)               |        br_netif_receive_skb [bridge]() {
+ 0)   6.780 us    |          netif_receive_skb();
+ 0)   7.568 us    |        }
+ 0) + 10.739 us   |      }
+ 0) + 14.897 us   |    }
+ 0) + 16.560 us   |  }
+ ------------------------------------------
+ 0)   ksoftir-13   =>    nc-12831   
+ ------------------------------------------
+
+ 0)               |  br_handle_frame [bridge]() {
+ 0)               |    br_nf_pre_routing [br_netfilter]() {
+ 0)   0.326 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 0)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 0)               |        br_nf_hook_thresh [br_netfilter]() {
+ 0)               |          br_handle_frame_finish [bridge]() {
+ 0)   0.301 us    |            br_allowed_ingress [bridge]();
+ 0)   1.679 us    |            br_fdb_update [bridge]();
+ 0)   0.593 us    |            br_fdb_find_rcu [bridge]();
+ 0)               |            br_pass_frame_up [bridge]() {
+ 0)   0.309 us    |              br_allowed_egress [bridge]();
+ 0)   0.297 us    |              br_handle_vlan [bridge]();
+ 0)   0.287 us    |              br_multicast_count [bridge]();
+ 0)               |              br_netif_receive_skb [bridge]() {
+ 0)               |                netif_receive_skb() {
+ 0)               |                  br_dev_xmit [bridge]() {
+ 0)   0.296 us    |                    br_nf_dev_xmit [br_netfilter]();
+ 0)   0.254 us    |                    br_allowed_ingress [bridge]();
+ 0)   0.301 us    |                    br_fdb_find_rcu [bridge]();
+ 0)               |                    br_forward [bridge]() {
+ 0)   0.414 us    |                      br_allowed_egress [bridge]();
+ 0)   0.249 us    |                      br_handle_vlan [bridge]();
+ 0)               |                      br_forward_finish [bridge]() {
+ 0)   0.297 us    |                        br_nf_post_routing [br_netfilter]();
+ 0)               |                        br_dev_queue_push_xmit [bridge]() {
+ 0)   0.266 us    |                          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 0)   2.498 us    |                        }
+ 0)   4.018 us    |                      }
+ 0)   6.492 us    |                    }
+ 0)   9.012 us    |                  }
+ 0) + 36.168 us   |                }
+ 0) + 36.721 us   |              }
+ 0) + 39.656 us   |            }
+ 0) + 44.485 us   |          }
+ 0) + 45.307 us   |        }
+ 0) + 45.967 us   |      }
+ 0) + 56.438 us   |    }
+ 0) + 61.165 us   |  }
+ 2)               |  br_handle_frame [bridge]() {
+ 2)               |    br_nf_pre_routing [br_netfilter]() {
+ 2)   0.324 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 2)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 2)               |        br_nf_hook_thresh [br_netfilter]() {
+ 2)               |          br_handle_frame_finish [bridge]() {
+ 2)   0.293 us    |            br_allowed_ingress [bridge]();
+ 2)   1.232 us    |            br_fdb_update [bridge]();
+ 2) + 22.294 us   |            br_fdb_find_rcu [bridge]();
+ 2)               |            br_pass_frame_up [bridge]() {
+ 2)   0.410 us    |              br_allowed_egress [bridge]();
+ 2)   0.377 us    |              br_handle_vlan [bridge]();
+ 2)   0.291 us    |              br_multicast_count [bridge]();
+ 2)               |              br_netif_receive_skb [bridge]() {
+ 2)               |                netif_receive_skb() {
+ 2)               |                  br_dev_xmit [bridge]() {
+ 2)   0.294 us    |                    br_nf_dev_xmit [br_netfilter]();
+ 2)   0.244 us    |                    br_allowed_ingress [bridge]();
+ 2)   0.343 us    |                    br_fdb_find_rcu [bridge]();
+ 2)               |                    br_forward [bridge]() {
+ 2)   0.355 us    |                      br_allowed_egress [bridge]();
+ 2)   0.284 us    |                      br_handle_vlan [bridge]();
+ 2)               |                      br_forward_finish [bridge]() {
+ 2)   0.307 us    |                        br_nf_post_routing [br_netfilter]();
+ 2)               |                        br_dev_queue_push_xmit [bridge]() {
+ 2)   0.254 us    |                          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 2)   3.150 us    |                        }
+ 2)   4.750 us    |                      }
+ 2)   7.235 us    |                    }
+ 2) + 10.169 us   |                  }
+ 2) + 36.935 us   |                }
+ 2) + 37.690 us   |              }
+ 2) + 40.934 us   |            }
+ 2) + 67.276 us   |          }
+ 2) + 68.101 us   |        }
+ 2) + 68.772 us   |      }
+ 2) + 80.323 us   |    }
+ 2) + 84.932 us   |  }
+ 2)               |  br_handle_frame [bridge]() {
+ 2)               |    br_nf_pre_routing [br_netfilter]() {
+ 2)   0.313 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 2)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 2)               |        br_nf_hook_thresh [br_netfilter]() {
+ 2)               |          br_handle_frame_finish [bridge]() {
+ 2)   0.271 us    |            br_allowed_ingress [bridge]();
+ 2)   1.748 us    |            br_fdb_update [bridge]();
+ 2)   0.561 us    |            br_fdb_find_rcu [bridge]();
+ 2)               |            br_pass_frame_up [bridge]() {
+ 2)   0.270 us    |              br_allowed_egress [bridge]();
+ 2)   0.318 us    |              br_handle_vlan [bridge]();
+ 2)   0.267 us    |              br_multicast_count [bridge]();
+ 2)               |              br_netif_receive_skb [bridge]() {
+ 2)               |                netif_receive_skb() {
+ 2)               |                  br_dev_xmit [bridge]() {
+ 2)   0.291 us    |                    br_nf_dev_xmit [br_netfilter]();
+ 2)   0.250 us    |                    br_allowed_ingress [bridge]();
+ 2)   0.305 us    |                    br_fdb_find_rcu [bridge]();
+ 2)               |                    br_forward [bridge]() {
+ 2)   0.314 us    |                      br_allowed_egress [bridge]();
+ 2)   0.286 us    |                      br_handle_vlan [bridge]();
+ 2)               |                      br_forward_finish [bridge]() {
+ 2)   0.282 us    |                        br_nf_post_routing [br_netfilter]();
+ 2)               |                        br_dev_queue_push_xmit [bridge]() {
+ 2)   0.264 us    |                          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 2)   2.324 us    |                        }
+ 2)   3.865 us    |                      }
+ 2)   6.233 us    |                    }
+ 2)   8.830 us    |                  }
+ 2) + 38.310 us   |                }
+ 2) + 38.971 us   |              }
+ 2) + 41.742 us   |            }
+ 2) + 46.608 us   |          }
+ 2) + 47.386 us   |        }
+ 2) + 48.013 us   |      }
+ 2) + 57.867 us   |    }
+ 2) + 62.706 us   |  }
+ 2)               |  br_handle_frame [bridge]() {
+ 2)               |    br_nf_pre_routing [br_netfilter]() {
+ 2)   0.285 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 2)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 2)               |        br_nf_hook_thresh [br_netfilter]() {
+ 2)               |          br_handle_frame_finish [bridge]() {
+ 2)   0.264 us    |            br_allowed_ingress [bridge]();
+ 2) + 21.387 us   |            br_fdb_update [bridge]();
+ 2)   0.467 us    |            br_fdb_find_rcu [bridge]();
+ 2)               |            br_pass_frame_up [bridge]() {
+ 2)   0.278 us    |              br_allowed_egress [bridge]();
+ 2)   0.270 us    |              br_handle_vlan [bridge]();
+ 2)   0.320 us    |              br_multicast_count [bridge]();
+ 2)               |              br_netif_receive_skb [bridge]() {
+ 2)               |                netif_receive_skb() {
+ 2)               |                  br_dev_xmit [bridge]() {
+ 2)   0.288 us    |                    br_nf_dev_xmit [br_netfilter]();
+ 2)   0.234 us    |                    br_allowed_ingress [bridge]();
+ 2)   0.254 us    |                    br_fdb_find_rcu [bridge]();
+ 2)               |                    br_forward [bridge]() {
+ 2)   0.308 us    |                      br_allowed_egress [bridge]();
+ 2)   0.228 us    |                      br_handle_vlan [bridge]();
+ 2)               |                      br_forward_finish [bridge]() {
+ 2)   0.264 us    |                        br_nf_post_routing [br_netfilter]();
+ 2)               |                        br_dev_queue_push_xmit [bridge]() {
+ 2)   0.245 us    |                          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 2)   2.221 us    |                        }
+ 2)   3.656 us    |                      }
+ 2)   5.834 us    |                    }
+ 2)   8.293 us    |                  }
+ 2) + 31.819 us   |                }
+ 2) + 32.422 us   |              }
+ 2) + 35.813 us   |            }
+ 2) + 60.267 us   |          }
+ 2) + 61.169 us   |        }
+ 2) + 61.771 us   |      }
+ 2) + 71.045 us   |    }
+ 2) + 75.016 us   |  }
+ 2)               |  br_handle_frame [bridge]() {
+ 2)               |    br_nf_pre_routing [br_netfilter]() {
+ 2)   0.281 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 2)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 2)               |        br_nf_hook_thresh [br_netfilter]() {
+ 2)               |          br_handle_frame_finish [bridge]() {
+ 2)   0.268 us    |            br_allowed_ingress [bridge]();
+ 2)   1.230 us    |            br_fdb_update [bridge]();
+ 2)   0.569 us    |            br_fdb_find_rcu [bridge]();
+ 2)               |            br_pass_frame_up [bridge]() {
+ 2)   0.279 us    |              br_allowed_egress [bridge]();
+ 2)   0.277 us    |              br_handle_vlan [bridge]();
+ 2)   0.267 us    |              br_multicast_count [bridge]();
+ 2)               |              br_netif_receive_skb [bridge]() {
+ 2) + 21.483 us   |                netif_receive_skb();
+ 2) + 22.036 us   |              }
+ 2) + 25.139 us   |            }
+ 2) + 29.483 us   |          }
+ 2) + 30.238 us   |        }
+ 2) + 30.874 us   |      }
+ 2) + 44.226 us   |    }
+ 2) + 49.043 us   |  }
+ 3)               |  br_dev_xmit [bridge]() {
+ 3)   0.429 us    |    br_nf_dev_xmit [br_netfilter]();
+ 3)   0.282 us    |    br_allowed_ingress [bridge]();
+ 3)   0.414 us    |    br_fdb_find_rcu [bridge]();
+ 3)               |    br_forward [bridge]() {
+ 3)   0.369 us    |      br_allowed_egress [bridge]();
+ 3)   0.315 us    |      br_handle_vlan [bridge]();
+ 3)               |      br_forward_finish [bridge]() {
+ 3)   0.273 us    |        br_nf_post_routing [br_netfilter]();
+ 3)               |        br_dev_queue_push_xmit [bridge]() {
+ 3)   0.243 us    |          br_switchdev_frame_set_offload_fwd_mark [bridge]();
+ 3)   2.974 us    |        }
+ 3)   4.418 us    |      }
+ 3)   7.061 us    |    }
+ 3) + 11.538 us   |  }
+ 3)               |  br_handle_frame [bridge]() {
+ 3)               |    br_nf_pre_routing [br_netfilter]() {
+ 3)   0.297 us    |      br_validate_ipv4.isra.0 [br_netfilter]();
+ 3)               |      br_nf_pre_routing_finish [br_netfilter]() {
+ 3)               |        br_nf_hook_thresh [br_netfilter]() {
+ 3)               |          br_handle_frame_finish [bridge]() {
+ 3)   0.265 us    |            br_allowed_ingress [bridge]();
+ 3)   0.361 us    |            br_fdb_update [bridge]();
+ 3)   0.292 us    |            br_fdb_find_rcu [bridge]();
+ 3)               |            br_pass_frame_up [bridge]() {
+ 3)   0.228 us    |              br_allowed_egress [bridge]();
+ 3)   0.230 us    |              br_handle_vlan [bridge]();
+ 3)   0.234 us    |              br_multicast_count [bridge]();
+ 3)               |              br_netif_receive_skb [bridge]() {
+ 3)   2.222 us    |                netif_receive_skb();
+ 3)   2.688 us    |              }
+ 3)   4.609 us    |            }
+ 3)   6.961 us    |          }
+ 3)   7.510 us    |        }
+ 3)   8.085 us    |      }
+ 3) + 15.620 us   |    }
+ 3) + 16.251 us   |  }
+ ------------------------------------------
+ 2)    nc-12831    => kworker-12297 
+ ------------------------------------------
+
+ 2)   3.554 us    |  br_fdb_cleanup [bridge]();
+ ------------------------------------------
+ 3)    nc-12830    =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 34.687 us   |  netif_receive_skb_list_internal();
+ 3) + 64.913 us   |  netif_receive_skb_list_internal();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 24.548 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   1.811 us    |      __netif_schedule();
+ 3)   4.196 us    |    }
+ 3) + 17.702 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    =>   ksoftir-34  
+ ------------------------------------------
+
+ 3)   4.283 us    |  net_tx_action();
+ 3) + 26.328 us   |  net_rx_action();
+ ------------------------------------------
+ 3)   ksoftir-34   => kworker-21975 
+ ------------------------------------------
+
+ 3) + 27.837 us   |  net_rx_action();
+ 1) ! 267.368 us  |  dev_attr_show();
+ 1)   2.538 us    |  dev_attr_show();
+ 1)   1.152 us    |  dev_attr_show();
+ 1)   1.998 us    |  dev_attr_show();
+ 1)   0.774 us    |  dev_attr_show();
+ 1)   0.896 us    |  dev_attr_show();
+ 1)   0.842 us    |  dev_attr_show();
+ 3) + 39.216 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>  llvmpip-2626 
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   0.336 us    |      __netif_schedule();
+ 3)   0.956 us    |    }
+ 3)   5.374 us    |  }
+ 3)   1.604 us    |  net_tx_action();
+ ------------------------------------------
+ 3)  llvmpip-2626  =>   ping-22180  
+ ------------------------------------------
+
+ 3)   7.937 us    |  netlink_has_listeners();
+ 3)               |  dev_queue_xmit() {
+ 3)   0.345 us    |    netdev_core_pick_tx();
+ 3)   0.508 us    |    netif_skb_features();
+ 3)   8.291 us    |    dev_hard_start_xmit();
+ 3) + 11.950 us   |  }
+ ------------------------------------------
+ 3)   ping-22180   => kworker-21975 
+ ------------------------------------------
+
+ 3)               |  dev_forward_skb() {
+ 3)   0.915 us    |    netif_rx_internal();
+ 3)   2.534 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   1.180 us    |        __netif_receive_skb_core();
+ 3)   6.282 us    |      }
+ 3)   6.921 us    |    }
+ 3)   8.310 us    |  }
+ 3)               |  dev_forward_skb() {
+ 3)   0.407 us    |    netif_rx_internal();
+ 3)   1.322 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.279 us    |        __netif_receive_skb_core();
+ 3)   5.708 us    |      }
+ 3)   6.236 us    |    }
+ 3)   6.869 us    |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   0.332 us    |    netdev_core_pick_tx();
+ 3)   0.599 us    |    netif_skb_features();
+ 3) + 34.942 us   |    dev_hard_start_xmit();
+ 3) + 39.578 us   |  }
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 31.496 us   |  net_rx_action();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 34.110 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_queue_xmit() {
+ 3)   0.826 us    |    netdev_core_pick_tx();
+ 3)   0.956 us    |    netif_skb_features();
+ 3) + 13.637 us   |    dev_hard_start_xmit();
+ 3) + 26.284 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3)               |  dev_forward_skb() {
+ 3)   1.707 us    |    netif_rx_internal();
+ 3)   4.839 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   1.527 us    |        __netif_receive_skb_core();
+ 3) + 12.187 us   |      }
+ 3) + 13.400 us   |    }
+ 3) + 15.757 us   |  }
+ 3)               |  dev_forward_skb() {
+ 3)   0.674 us    |    netif_rx_internal();
+ 3)   2.634 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.469 us    |        __netif_receive_skb_core();
+ 3) + 65.726 us   |      }
+ 3) + 67.051 us   |    }
+ 3) + 68.226 us   |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   0.486 us    |    netdev_core_pick_tx();
+ 3)   1.169 us    |    netif_skb_features();
+ 3) + 53.401 us   |    dev_hard_start_xmit();
+ 3) + 60.955 us   |  }
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 41.833 us   |  net_rx_action();
+ 3)               |  dev_queue_xmit() {
+ 3)   0.843 us    |    netdev_core_pick_tx();
+ 3)   0.814 us    |    netif_skb_features();
+ 3) + 29.041 us   |    dev_hard_start_xmit();
+ 3) + 39.495 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3)               |  dev_forward_skb() {
+ 3)   1.483 us    |    netif_rx_internal();
+ 3)   3.993 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   1.315 us    |        __netif_receive_skb_core();
+ 3) + 13.532 us   |      }
+ 3) + 14.568 us   |    }
+ 3) + 16.728 us   |  }
+ 3)               |  dev_forward_skb() {
+ 3)   0.635 us    |    netif_rx_internal();
+ 3)   2.188 us    |  }
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.407 us    |        __netif_receive_skb_core();
+ 3)   3.889 us    |      }
+ 3)   4.645 us    |    }
+ 3)   5.604 us    |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   0.484 us    |    netdev_core_pick_tx();
+ 3)   1.024 us    |    netif_skb_features();
+ 3) ! 310.849 us  |    dev_hard_start_xmit();
+ 3) + 20.828 us   |    net_rx_action();
+ 3) ! 340.451 us  |  }
+ 3) + 14.349 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_queue_xmit() {
+ 3)   1.120 us    |    netdev_core_pick_tx();
+ 3)   1.266 us    |    netif_skb_features();
+ 3)               |    dev_hard_start_xmit() {
+ 3)               |      netif_rx() {
+ 3)   1.840 us    |        netif_rx_internal();
+ 3)   3.261 us    |      }
+ 3)   7.563 us    |    }
+ 3) + 21.392 us   |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   0.585 us    |    netdev_core_pick_tx();
+ 3)   0.573 us    |    netif_skb_features();
+ 3)               |    dev_hard_start_xmit() {
+ 3)               |      netif_rx() {
+ 3)   0.917 us    |        netif_rx_internal();
+ 3)   2.005 us    |      }
+ 3)   3.275 us    |    }
+ 3)   6.829 us    |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   2.229 us    |    netdev_core_pick_tx();
+ 3)   0.622 us    |    netif_skb_features();
+ 3)               |    dev_hard_start_xmit() {
+ 3)               |      netif_rx() {
+ 3)   0.782 us    |        netif_rx_internal();
+ 3)   1.840 us    |      }
+ 3)   3.142 us    |    }
+ 3)   8.450 us    |  }
+ 3)               |  dev_queue_xmit() {
+ 3)   0.625 us    |    netdev_core_pick_tx();
+ 3)   0.557 us    |    netif_skb_features();
+ 3)               |    dev_hard_start_xmit() {
+ 3)               |      netif_rx() {
+ 3)   0.798 us    |        netif_rx_internal();
+ 3)   1.864 us    |      }
+ 3)   3.150 us    |    }
+ 3)   6.647 us    |  }
+ 3)               |  netlink_broadcast_filtered() {
+ 3)   1.224 us    |    netlink_trim();
+ 3) + 11.882 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    =>   ksoftir-34  
+ ------------------------------------------
+
+ 3)               |  net_rx_action() {
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   1.633 us    |        __netif_receive_skb_core();
+ 3) + 27.775 us   |      }
+ 3) + 29.362 us   |    }
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.642 us    |        __netif_receive_skb_core();
+ 3)   6.856 us    |      }
+ 3)   8.027 us    |    }
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.582 us    |        __netif_receive_skb_core();
+ 3)   5.820 us    |      }
+ 3)   6.941 us    |    }
+ 3)               |    __netif_receive_skb() {
+ 3)               |      __netif_receive_skb_one_core() {
+ 3)   0.541 us    |        __netif_receive_skb_core();
+ 3)   5.708 us    |      }
+ 3)   6.823 us    |    }
+ 3) + 56.478 us   |  }
+ ------------------------------------------
+ 3)   ksoftir-34   =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   1.196 us    |      __netif_schedule();
+ 3)   2.500 us    |    }
+ 3) + 10.264 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    =>   ksoftir-34  
+ ------------------------------------------
+
+ 3)   2.645 us    |  net_tx_action();
+ ------------------------------------------
+ 2) kworker-12297  =>   ping-22180  
+ ------------------------------------------
+
+ 2)               |  dev_queue_xmit() {
+ 2)   1.025 us    |    netdev_core_pick_tx();
+ 2)   0.889 us    |    netif_skb_features();
+ 2) + 13.113 us   |    dev_hard_start_xmit();
+ 2) + 24.948 us   |  }
+ ------------------------------------------
+ 2)   ping-22180   => kworker-21971 
+ ------------------------------------------
+
+ 2)               |  dev_forward_skb() {
+ 2)   1.641 us    |    netif_rx_internal();
+ 2)   4.873 us    |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.578 us    |        __netif_receive_skb_core();
+ 2) + 12.184 us   |      }
+ 2) + 13.316 us   |    }
+ 2) + 15.873 us   |  }
+ 2)               |  dev_forward_skb() {
+ 2)   0.641 us    |    netif_rx_internal();
+ 2)   2.717 us    |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.431 us    |        __netif_receive_skb_core();
+ 2)   4.947 us    |      }
+ 2)   5.759 us    |    }
+ 2)   6.769 us    |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.472 us    |    netdev_core_pick_tx();
+ 2)   1.040 us    |    netif_skb_features();
+ 2) + 68.506 us   |    dev_hard_start_xmit();
+ 2) + 75.150 us   |  }
+ ------------------------------------------
+ 3)   ksoftir-34   =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 31.505 us   |  net_rx_action();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 27.146 us   |  net_rx_action();
+ ------------------------------------------
+ 2) kworker-21971  =>    <idle>-0   
+ ------------------------------------------
+
+ 2)               |  dev_queue_xmit() {
+ 2)   1.128 us    |    netdev_core_pick_tx();
+ 2)   1.089 us    |    netif_skb_features();
+ 2) + 28.008 us   |    dev_hard_start_xmit();
+ 2) + 41.765 us   |  }
+ ------------------------------------------
+ 2)    <idle>-0    => kworker-21971 
+ ------------------------------------------
+
+ 2)               |  dev_forward_skb() {
+ 2) + 41.452 us   |    netif_rx_internal();
+ 2) + 47.396 us   |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.633 us    |        __netif_receive_skb_core();
+ 2) + 17.626 us   |      }
+ 2) + 19.101 us   |    }
+ 2) + 21.782 us   |  }
+ 2)               |  dev_forward_skb() {
+ 2)   0.907 us    |    netif_rx_internal();
+ 2)   2.506 us    |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.536 us    |        __netif_receive_skb_core();
+ 2)   5.528 us    |      }
+ 2)   6.471 us    |    }
+ 2)   7.676 us    |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.651 us    |    netdev_core_pick_tx();
+ 2)   1.256 us    |    netif_skb_features();
+ 2) ! 320.715 us  |    dev_hard_start_xmit();
+ 2) ! 330.219 us  |  }
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 38.652 us   |  net_rx_action();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 22.390 us   |  net_rx_action();
+ ------------------------------------------
+ 2) kworker-21971  =>    <idle>-0   
+ ------------------------------------------
+
+ 2)               |  dev_queue_xmit() {
+ 2)   0.738 us    |    netdev_core_pick_tx();
+ 2)   0.929 us    |    netif_skb_features();
+ 2) + 20.905 us   |    dev_hard_start_xmit();
+ 2) + 33.635 us   |  }
+ ------------------------------------------
+ 2)    <idle>-0    => kworker-21971 
+ ------------------------------------------
+
+ 2)               |  dev_forward_skb() {
+ 2)   1.943 us    |    netif_rx_internal();
+ 2)   5.800 us    |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.515 us    |        __netif_receive_skb_core();
+ 2) + 17.284 us   |      }
+ 2) + 18.490 us   |    }
+ 2) + 20.945 us   |  }
+ 2)               |  dev_forward_skb() {
+ 2)   0.632 us    |    netif_rx_internal();
+ 2)   1.917 us    |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.570 us    |        __netif_receive_skb_core();
+ 2)   5.476 us    |      }
+ 2)   6.210 us    |    }
+ 2)   7.157 us    |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.463 us    |    netdev_core_pick_tx();
+ 2)   1.455 us    |    netif_skb_features();
+ 2) + 69.075 us   |    dev_hard_start_xmit();
+ 2) + 76.254 us   |  }
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3) + 28.359 us   |  net_rx_action();
+ ------------------------------------------
+ 2) kworker-21971  =>    <idle>-0   
+ ------------------------------------------
+
+ 2)               |  dev_queue_xmit() {
+ 2)   0.982 us    |    netdev_core_pick_tx();
+ 2)   1.177 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   1.800 us    |        netif_rx_internal();
+ 2)   2.994 us    |      }
+ 2)   6.858 us    |    }
+ 2) + 19.265 us   |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.542 us    |    netdev_core_pick_tx();
+ 2)   0.441 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   0.759 us    |        netif_rx_internal();
+ 2)   1.595 us    |      }
+ 2)   2.630 us    |    }
+ 2)   5.651 us    |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.414 us    |    netdev_core_pick_tx();
+ 2)   0.431 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   0.850 us    |        netif_rx_internal();
+ 2)   1.713 us    |      }
+ 2)   2.822 us    |    }
+ 2)   5.540 us    |  }
+ 2)               |  dev_queue_xmit() {
+ 2)   0.417 us    |    netdev_core_pick_tx();
+ 2)   0.425 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   0.711 us    |        netif_rx_internal();
+ 2)   1.567 us    |      }
+ 2)   2.589 us    |    }
+ 2)   5.471 us    |  }
+ 2)               |  netlink_broadcast_filtered() {
+ 2)   2.128 us    |    netlink_trim();
+ 2) + 12.390 us   |  }
+ ------------------------------------------
+ 2)    <idle>-0    =>   ksoftir-28  
+ ------------------------------------------
+
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.489 us    |        __netif_receive_skb_core();
+ 2) + 23.220 us   |      }
+ 2) + 24.523 us   |    }
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.509 us    |        __netif_receive_skb_core();
+ 2)   4.481 us    |      }
+ 2)   5.426 us    |    }
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.456 us    |        __netif_receive_skb_core();
+ 2)   4.119 us    |      }
+ 2)   4.975 us    |    }
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.451 us    |        __netif_receive_skb_core();
+ 2)   4.018 us    |      }
+ 2)   4.881 us    |    }
+ 2) + 44.830 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 29.534 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   0.678 us    |      __netif_schedule();
+ 3)   2.177 us    |    }
+ 3)   8.533 us    |  }
+ 3)   1.488 us    |  net_tx_action();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 20.030 us   |  net_rx_action();
+ 3) + 29.591 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   2.559 us    |      __netif_schedule();
+ 3)   5.078 us    |    }
+ 3) + 18.434 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    =>   ksoftir-34  
+ ------------------------------------------
+
+ 3)   4.680 us    |  net_tx_action();
+ ------------------------------------------
+ 1)  upowerd-2022  =>   ping-22181  
+ ------------------------------------------
+
+ 1)   8.050 us    |  netlink_has_listeners();
+ 1)               |  dev_queue_xmit() {
+ 1)   0.421 us    |    netdev_core_pick_tx();
+ 1)   0.486 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   0.833 us    |        netif_rx_internal();
+ 1)   1.461 us    |      }
+ 1)   4.240 us    |    }
+ 1)   7.838 us    |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.864 us    |        __netif_receive_skb_core();
+ 1)   0.714 us    |        netlink_has_listeners();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.250 us    |          netdev_core_pick_tx();
+ 1)   0.317 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   0.429 us    |              netif_rx_internal();
+ 1)   0.885 us    |            }
+ 1)   1.815 us    |          }
+ 1)   3.579 us    |        }
+ 1) + 66.264 us   |      }
+ 1) + 66.894 us   |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.385 us    |        __netif_receive_skb_core();
+ 1)   4.746 us    |      }
+ 1)   5.245 us    |    }
+ 1) + 73.863 us   |  }
+ ------------------------------------------
+ 3)   ksoftir-34   => kworker-21975 
+ ------------------------------------------
+
+ 3) + 28.342 us   |  net_rx_action();
+ 1)               |  dev_queue_xmit() {
+ 1)   1.064 us    |    netdev_core_pick_tx();
+ 1)   0.947 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   1.819 us    |        netif_rx_internal();
+ 1)   3.064 us    |      }
+ 1)   8.057 us    |    }
+ 1) + 20.277 us   |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   1.598 us    |        __netif_receive_skb_core();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.514 us    |          netdev_core_pick_tx();
+ 1)   0.548 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   0.739 us    |              netif_rx_internal();
+ 1)   1.792 us    |            }
+ 1)   3.021 us    |          }
+ 1)   6.227 us    |        }
+ 1) + 53.851 us   |      }
+ 1) + 55.038 us   |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.544 us    |        __netif_receive_skb_core();
+ 1)   6.142 us    |      }
+ 1)   7.031 us    |    }
+ 1) + 65.279 us   |  }
+ 1)               |  dev_queue_xmit() {
+ 1)   0.796 us    |    netdev_core_pick_tx();
+ 1)   0.950 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   1.332 us    |        netif_rx_internal();
+ 1)   2.304 us    |      }
+ 1)   6.135 us    |    }
+ 1) + 20.316 us   |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   1.311 us    |        __netif_receive_skb_core();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.425 us    |          netdev_core_pick_tx();
+ 1)   0.459 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   0.611 us    |              netif_rx_internal();
+ 1)   1.338 us    |            }
+ 1)   3.339 us    |          }
+ 1)   6.108 us    |        }
+ 1) + 42.403 us   |      }
+ 1) + 43.373 us   |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.490 us    |        __netif_receive_skb_core();
+ 1)   9.151 us    |      }
+ 1)   9.976 us    |    }
+ 1) + 55.972 us   |  }
+ 3) + 27.056 us   |  net_rx_action();
+ 1)               |  dev_queue_xmit() {
+ 1)   0.619 us    |    netdev_core_pick_tx();
+ 1)   0.564 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   1.078 us    |        netif_rx_internal();
+ 1)   1.839 us    |      }
+ 1)   4.220 us    |    }
+ 1) + 12.136 us   |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.897 us    |        __netif_receive_skb_core();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.324 us    |          netdev_core_pick_tx();
+ 1)   0.319 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   0.566 us    |              netif_rx_internal();
+ 1)   1.064 us    |            }
+ 1)   2.111 us    |          }
+ 1)   4.591 us    |        }
+ 1) + 60.010 us   |      }
+ 1) + 60.725 us   |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.338 us    |        __netif_receive_skb_core();
+ 1)   5.451 us    |      }
+ 1)   5.999 us    |    }
+ 1) + 68.473 us   |  }
+ 1)               |  dev_queue_xmit() {
+ 1)   1.267 us    |    netdev_core_pick_tx();
+ 1)   1.175 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   1.791 us    |        netif_rx_internal();
+ 1)   3.184 us    |      }
+ 1)   8.358 us    |    }
+ 1) + 22.291 us   |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   1.748 us    |        __netif_receive_skb_core();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.682 us    |          netdev_core_pick_tx();
+ 1)   0.830 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   1.178 us    |              netif_rx_internal();
+ 1)   2.221 us    |            }
+ 1)   4.098 us    |          }
+ 1)   8.426 us    |        }
+ 1) + 58.376 us   |      }
+ 1) ! 141.357 us  |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.596 us    |        __netif_receive_skb_core();
+ 1)   6.732 us    |      }
+ 1)   7.754 us    |    }
+ 1) ! 152.832 us  |  }
+ 3) + 22.458 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   1.471 us    |      __netif_schedule();
+ 3)   3.111 us    |    }
+ 3) + 13.160 us   |  }
+ 3)   2.067 us    |  net_tx_action();
+ 1)               |  dev_queue_xmit() {
+ 1)   1.063 us    |    netdev_core_pick_tx();
+ 1)   1.104 us    |    netif_skb_features();
+ 1)               |    dev_hard_start_xmit() {
+ 1)               |      netif_rx() {
+ 1)   2.272 us    |        netif_rx_internal();
+ 1)   3.653 us    |      }
+ 1)   8.369 us    |    }
+ 1) + 22.019 us   |  }
+ 1)               |  net_rx_action() {
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   6.740 us    |        __netif_receive_skb_core();
+ 1)               |        dev_queue_xmit() {
+ 1)   0.645 us    |          netdev_core_pick_tx();
+ 1)   0.608 us    |          netif_skb_features();
+ 1)               |          dev_hard_start_xmit() {
+ 1)               |            netif_rx() {
+ 1)   0.820 us    |              netif_rx_internal();
+ 1)   1.927 us    |            }
+ 1)   3.267 us    |          }
+ 1)   7.051 us    |        }
+ 1) + 57.563 us   |      }
+ 1) + 58.841 us   |    }
+ 1)               |    __netif_receive_skb() {
+ 1)               |      __netif_receive_skb_one_core() {
+ 1)   0.652 us    |        __netif_receive_skb_core();
+ 1)   6.630 us    |      }
+ 1)   7.756 us    |    }
+ 1) + 73.944 us   |  }
+ ------------------------------------------
+ 2)   ksoftir-28   =>   ping-22181  
+ ------------------------------------------
+
+ 2)               |  dev_queue_xmit() {
+ 2)   1.244 us    |    netdev_core_pick_tx();
+ 2)   1.184 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   2.000 us    |        netif_rx_internal();
+ 2)   3.528 us    |      }
+ 2)   8.825 us    |    }
+ 2) + 23.159 us   |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.742 us    |        __netif_receive_skb_core();
+ 2)               |        dev_queue_xmit() {
+ 2)   0.657 us    |          netdev_core_pick_tx();
+ 2)   0.713 us    |          netif_skb_features();
+ 2)               |          dev_hard_start_xmit() {
+ 2)               |            netif_rx() {
+ 2)   1.264 us    |              netif_rx_internal();
+ 2)   2.435 us    |            }
+ 2)   4.306 us    |          }
+ 2)   9.585 us    |        }
+ 2) ! 137.572 us  |      }
+ 2) ! 138.999 us  |    }
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.711 us    |        __netif_receive_skb_core();
+ 2) + 10.888 us   |      }
+ 2) + 12.028 us   |    }
+ 2) ! 154.520 us  |  }
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3) + 30.390 us   |  net_rx_action();
+ 2)               |  dev_queue_xmit() {
+ 2)   1.218 us    |    netdev_core_pick_tx();
+ 2)   1.504 us    |    netif_skb_features();
+ 2)               |    dev_hard_start_xmit() {
+ 2)               |      netif_rx() {
+ 2)   2.335 us    |        netif_rx_internal();
+ 2)   3.816 us    |      }
+ 2)   8.544 us    |    }
+ 2) + 23.138 us   |  }
+ 2)               |  net_rx_action() {
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   1.745 us    |        __netif_receive_skb_core();
+ 2)               |        dev_queue_xmit() {
+ 2)   0.638 us    |          netdev_core_pick_tx();
+ 2)   0.619 us    |          netif_skb_features();
+ 2)               |          dev_hard_start_xmit() {
+ 2)               |            netif_rx() {
+ 2)   0.826 us    |              netif_rx_internal();
+ 2)   2.203 us    |            }
+ 2)   3.678 us    |          }
+ 2)   7.439 us    |        }
+ 2) + 47.094 us   |      }
+ 2) + 48.484 us   |    }
+ 2)               |    __netif_receive_skb() {
+ 2)               |      __netif_receive_skb_one_core() {
+ 2)   0.662 us    |        __netif_receive_skb_core();
+ 2)   7.480 us    |      }
+ 2)   8.632 us    |    }
+ 2) + 60.737 us   |  }
+ 3) + 35.717 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   0.992 us    |      __netif_schedule();
+ 3)   2.262 us    |    }
+ 3) + 11.688 us   |  }
+ 3)   2.457 us    |  net_tx_action();
+ ------------------------------------------
+ 3)    <idle>-0    => kworker-21975 
+ ------------------------------------------
+
+ 3)   8.377 us    |  net_rx_action();
+ 3) + 22.691 us   |  net_rx_action();
+ 3) + 21.935 us   |  net_rx_action();
+ ------------------------------------------
+ 3) kworker-21975  =>    <idle>-0   
+ ------------------------------------------
+
+ 3)               |  dev_watchdog() {
+ 3)               |    netif_schedule_queue() {
+ 3)   2.188 us    |      __netif_schedule();
+ 3)   4.797 us    |    }
+ 3) + 15.876 us   |  }
+ ------------------------------------------
+ 3)    <idle>-0    =>   ksoftir-34  
+ ------------------------------------------
+
+ 3)   4.256 us    |  net_tx_action();
+ ------------------------------------------
+ 3)   ksoftir-34   => kworker-21975 
+ ------------------------------------------
+
+ 3) + 31.921 us   |  net_rx_action();
+ 3) + 32.616 us   |  net_rx_action();
