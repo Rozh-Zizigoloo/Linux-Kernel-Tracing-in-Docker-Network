@@ -368,3 +368,6 @@ We create a flamegraph file:
 
 It is shown graphically in the ipvlan file.
 It has an overhead of **2.66**.
+## Docker (host mode) 🏠
+The host mode has no difference with the network itself and is like the main network.
+It has an overhead of **0**.
