@@ -146,14 +146,14 @@ sudo perf record -ae 'net:*,skb:*' --call-graph fp
 $nc -l 172.20.10.10.8002
 $nc -p 9000 172.20.10.10.8082
 ```
-> output file -> trace_with_bridge.txt
+> output file -> perf_bridge.txt
 
 ![Picture5](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/ee6b3953-d438-4e11-8ceb-ac18208ea4e3)
 
 The checks between the two log files found **bf_forward**:
 > File under review:
-> trace_simple.txt
-> trace_bridge.txt
+> perf_simple.txt
+> perf_bridge.txt
 
 ![Picture6](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f9a02e87-44bb-47b9-aca5-5677e0bc35c4)
 
@@ -265,7 +265,7 @@ rx_handler_result_t br_handle_frame(struct sk_buff **pskb) {
 echo 'br_*' >> set_ftrace_filter
 set_ftrace_filter
 ```
-> output file -> bridge_ftrace.log
+> output file -> ftrace_bridge.log
 
 To use the firefox tool to display the tracing file graphically;
 We create a flamegraph file:
@@ -278,7 +278,6 @@ We create a flamegraph file:
 ![Picture11](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/2af891bf-2261-41d1-b8c4-3116cd0ffba2)
 
 
-It is shown graphically in the bridge.perf file.
 It has an overhead of **19.53**.
 
 ## Docker (IPVLAN L2 mode) 🪢
@@ -335,13 +334,14 @@ ping 10.0.2.3
 
 ![Picture17](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f0e37014-d15f-4333-b456-1da3951331e2)
 
-> output file -> trace_with_bridge.txt
+
 ![Screenshot 2024-01-17 232456](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/5a289395-3f2b-4757-9625-88295ce7ce19)
 
+> output file -> perf_IPVLAN.txt
 The checks between the two log files found **netif_rx **:
 > File under review:
-> trace_simple.txt
-> trace_IPVLAN.txt
+> perf_simple.txt
+> perf_IPVLAN.txt
 
 and others functions:
 
@@ -355,7 +355,15 @@ and others functions:
 -  net:netif_receive_skb_list_entry 
 -  net:netif_rx_entry   
 -  net:netif_rx_ni_entry
+**Analysis with Ftrace :**
+```
+echo 'netif' >> set_ftrace_filter
+set_ftrace_filter
+```
+> output file -> ftrace_ipvlan.log
 
+To use the firefox tool to display the tracing file graphically;
+We create a flamegraph file:
 ![Screenshot 2024-01-17 235632](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/05badeb1-b45d-402c-91a5-cd87a50299da)
 
 It is shown graphically in the ipvlan file.
