@@ -3,7 +3,7 @@ In this project, we intend to use tracing tools to understand the implementation
 
 ## Tools ⚙
 
-- Ubuntu 20+2.04 focal
+- Ubuntu 22.04 focal
 - Perf
 - ftrace
 ## Docker & tracing 🧩
@@ -26,7 +26,7 @@ echo 0 > /sys/kernel/debug/tracing/tracing_on
 ```
 Finally, we save this trace in a file:
 ```
-cat trace > /***/ftrace_without_docker.log :
+cat trace > /***/[ftrace_without_docker.log](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_simple.txt) :
 ```
 ![Picture1](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/22d6111f-0e66-433b-95aa-276d272d0fcd)
 
@@ -146,14 +146,15 @@ sudo perf record -ae 'net:*,skb:*' --call-graph fp
 $nc -l 172.20.10.10.8002
 $nc -p 9000 172.20.10.10.8082
 ```
-> output file -> perf_bridge.txt
+> output file -> [perf_bridge.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_bridge.txt)
 
 ![Picture5](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/ee6b3953-d438-4e11-8ceb-ac18208ea4e3)
 
 The checks between the two log files found **bf_forward**:
 > File under review:
-> perf_simple.txt
-> perf_bridge.txt
+> [perf_simple.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_simple.txt)
+> [perf_bridge.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_bridge.txt)
+
 
 ![Picture6](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f9a02e87-44bb-47b9-aca5-5677e0bc35c4)
 
@@ -265,7 +266,7 @@ rx_handler_result_t br_handle_frame(struct sk_buff **pskb) {
 echo 'br_*' >> set_ftrace_filter
 set_ftrace_filter
 ```
-> output file -> ftrace_bridge.log
+> output file -> [ftrace_bridge.log](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/ftrace_bridge.log)
 
 To use the firefox tool to display the tracing file graphically;
 We create a flamegraph file:
@@ -337,11 +338,11 @@ ping 10.0.2.3
 
 ![Screenshot 2024-01-17 232456](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/5a289395-3f2b-4757-9625-88295ce7ce19)
 
-> output file -> perf_IPVLAN.txt
+> output file -> [perf_IPVLAN.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_ipvlan.txt)
 The checks between the two log files found **netif_rx **:
 > File under review:
-> perf_simple.txt
-> perf_IPVLAN.txt
+> [perf_simple.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_simple.txt)
+> [perf_IPVLAN.txt](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_ipvlan.txt)
 
 and others functions:
 
@@ -360,7 +361,7 @@ and others functions:
 echo 'netif' >> set_ftrace_filter
 set_ftrace_filter
 ```
-> output file -> ftrace_ipvlan.log
+> output file -> [ftrace_ipvlan.log](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/ftrace_ipvlan.log)
 
 To use the firefox tool to display the tracing file graphically;
 We create a flamegraph file:
