@@ -279,7 +279,7 @@ We create a flamegraph file:
 
 
 It is shown graphically in the bridge.perf file.
-It has an overhead of **19.53** seconds.
+It has an overhead of **19.53**.
 
 ## Docker (IPVLAN L2 mode) 🪢
 
@@ -327,11 +327,34 @@ for trace; We need to ping the eth0 again and get its ip using the following com
 
 ## IPVLAN mode analysis 🪄
 
-Run Ping from shell to inside container with  "172.20.10.10" and get perf from this operation.
+Run Ping from shell to inside container with  "10.0.2.3" and get perf from this operation.
 ```
 sudo perf record -ae 'net:*,skb:*' --call-graph fp
-# 172.20.10.10 ip addresss host
-$nc -l 172.20.10.10.8002
-$nc -p 9000 172.20.10.10.8082
+ping 10.0.2.3
 ```
+
+![Picture17](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f0e37014-d15f-4333-b456-1da3951331e2)
+
 > output file -> trace_with_bridge.txt
+![Screenshot 2024-01-17 232456](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/5a289395-3f2b-4757-9625-88295ce7ce19)
+
+The checks between the two log files found **netif_rx **:
+> File under review:
+> trace_simple.txt
+> trace_IPVLAN.txt
+
+![Picture6](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/f9a02e87-44bb-47b9-aca5-5677e0bc35c4)
+
+and others functions:
+
+-   net:napi_gro_frags_entry
+  net:napi_gro_receive_entry
+  net:net_dev_queue  
+  net:net_dev_start_xmit
+  net:net_dev_xmit                                   [Tracepoint eve
+  net:netif_receive_skb 
+  net:netif_receive_skb_entry  
+  net:netif_receive_skb_list_entry 
+  net:netif_rx  
+  net:netif_rx_entry   
+  net:netif_rx_ni_entry
