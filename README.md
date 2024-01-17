@@ -25,9 +25,9 @@ Tab2:$nc -p 9000 127.0.0.0 4444
 echo 0 > /sys/kernel/debug/tracing/tracing_on
 ```
 Finally, we save this trace in a file:
-```
-cat trace > /***/[ftrace_without_docker.log](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_simple.txt) :
-```
+
+- [ftrace_without_docker.log](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/blob/main/src/perf_simple.txt) :
+
 ![Picture1](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/22d6111f-0e66-433b-95aa-276d272d0fcd)
 
 ## Docker(Bridge mode) 🎢
