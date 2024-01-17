@@ -71,7 +71,7 @@ sudo docker run -itd --rm -p 8089 --network bridge --name test ubuntu
 
 [
     {
-        "Name": "bridge",
+        "Name": "**bridge**",
         "Id": "fcc95430ad74867a739d5b411edc5044395d48df5195523799c631fe1b6f2862",
         "Created": "2024-01-01T11:38:52.68857544+02:00",
         "Scope": "local",
@@ -96,14 +96,14 @@ sudo docker run -itd --rm -p 8089 --network bridge --name test ubuntu
         "ConfigOnly": false,
         "Containers": {
             "ce9ba1ba96fda724f9adc3084c00e57466e042edd7484e3c76be90684c481003": {
-                "Name": "test",
+                "Name": "**test**",
                 "EndpointID": "85c0cc7c182babe6aed473c24d0283dd792183ad0c2d509b778628511bcc862a",
                 "MacAddress": "02:42:ac:11:00:03",
-                "IPv4Address": "172.17.0.3/16",
+                "IPv4Address": "**172.17.0.3/16**",
                 "IPv6Address": ""
             },
             "f53dcbbcb8669682da8303e7cabb00a718ba1f8b9265bf42d4d0d756bedc674e": {
-                "Name": "test1",
+                "Name": "**test1**",
                 "EndpointID": "f965fb063c60c94f60acba20129188c15d3ec8749914575cd44ab12e371680fc",
                 "MacAddress": "02:42:ac:11:00:02",
                 "IPv4Address": "172.17.0.2/16",
@@ -124,6 +124,7 @@ sudo docker run -itd --rm -p 8089 --network bridge --name test ubuntu
 ```
 **making connection :**
 To run netcat, you must enter the bash file; become ubuntu.
+
 ![Picture3](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/03ffe2ae-63a7-492d-9d91-abe2da53553b)
 
 > Ping & NetCat installation:
@@ -131,4 +132,20 @@ To run netcat, you must enter the bash file; become ubuntu.
 >  apt-get install iputils-ping
 >  apt-get update -y
 >  apt-get install -y netcat
+> ```
+To test the connection -> ping to enp0s3 (172.20.10.10)
+
+![Picture4](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/0372c634-0906-4ee7-9935-ad8ef2dd8750)
+
+## Bridge mode analysis 🪄
+
+Run netcat from inside container to external network "172.20.10.10" and get perf from this operation.
 ```
+sudo perf record -ae 'net:*,skb:*' --call-graph fp
+# 172.20.10.10 ip addresss host
+$nc -l 172.20.10.10.8002
+$nc -p 9000 172.20.10.10.8082
+```
+> output file -> trace_with_bridge.txt
+![Picture5](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/ee6b3953-d438-4e11-8ceb-ac18208ea4e3)
+
