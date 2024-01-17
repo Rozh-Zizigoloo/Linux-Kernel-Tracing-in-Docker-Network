@@ -123,7 +123,7 @@ sudo docker run -itd --rm -p 8089 --network bridge --name test ubuntu
 ]
 ```
 **making connection :**
-To run netcat, you must enter the bash file; become ubuntu.
+To run netcat, you must enter the bash file.
 
 ![Picture3](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/03ffe2ae-63a7-492d-9d91-abe2da53553b)
 
@@ -280,3 +280,58 @@ We create a flamegraph file:
 
 It is shown graphically in the bridge.perf file.
 It has an overhead of **19.53** seconds.
+
+## Docker (IPVLAN L2 mode) 🪢
+
+In an IPvlan network, all containers on a Docker host share a single MAC address.
+
+L2 (or layer 2) mode is the default IPvlan mode. In L2 mode, the Docker host acts like a switch between the parent interface and a virtual NIC for each container. All communication is based on MAC addresses only. Containers in an IPvlan network (in L2 mode) can communicate with containers in other IPvlan networks. However, this causes many ARP broadcasts that affect network performance.
+
+In L3 (or Layer 3) mode, the Docker host acts like a Layer 3 device to route packets between the parent interface and the virtual NIC for each container. In this case, containers are completely isolated from other networks and broadcasts are limited to only the Layer 2 subnet. This improves network performance. The only downside is that you have to manually add a static route on your gateway router to tell other network devices how to access your IPvlan network running in L3 mode.
+
+**Ip address show :**
+```
+enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:cb:20:e8 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/28 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 57880sec preferred_lft 57880sec
+    inet6 fe80::2f58:cfa7:6340:43db/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+**create network mode**
+```
+sudo docker create network ipvlan --subnet 10.0.2.15/24 –gateway 172.20.10.1  --name ipvlanNetwork
+```
+
+![Picture12](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/37809eb2-01d0-45b4-a7cb-afb44319713a)
+
+**Create container :**
+```
+sudo docker run -itd --rm --network ipvlanNetwork --ip 10.0.2.3 --name 1p2vlanCont alpine
+```
+
+![Picture13](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/6cf41842-89db-409e-8f09-64f284f4c535)
+
+**making connection :**
+To run Ping, you must enter the bash file.
+
+![Picture14](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/ae11fb20-f0d3-4b2f-b2c3-f637c30f2a67)
+
+for trace; We need to ping the eth0 again and get its ip using the following commands.
+> ip address show
+> ifconfig
+
+![Picture15](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/11caa84c-7f57-4ec0-b966-13208d1064e8)
+
+![Picture16](https://github.com/Rozh-Zizigoloo/Linux-Kernel-Tracing-in-Docker-Network/assets/156912661/c5fb1450-2123-48be-bcdf-77d465899c30)
+
+## IPVLAN mode analysis 🪄
+
+Run Ping from shell to inside container with  "172.20.10.10" and get perf from this operation.
+```
+sudo perf record -ae 'net:*,skb:*' --call-graph fp
+# 172.20.10.10 ip addresss host
+$nc -l 172.20.10.10.8002
+$nc -p 9000 172.20.10.10.8082
+```
+> output file -> trace_with_bridge.txt
