@@ -378,3 +378,4 @@ It has an overhead of **0**.
 
 - [Deep Linux](https://www.youtube.com/@deeplinux2248)
 - [The Linux Kernel documentation](https://docs.kernel.org/)
+- [Using ebpf to analyze why Kubernetes NodePort services timeout](https://medium.com/@livingstone.s.e/using-ebpf-to-analyze-why-kubernetes-nodeport-services-timeout-bc912e7ddc83)
